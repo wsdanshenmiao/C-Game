@@ -127,11 +127,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="IMAGE.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="start_Game.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="IMAGE.h" />
     <ClInclude Include="start_Game.h" />
+    <ClInclude Include="tools.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

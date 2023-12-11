@@ -1,2 +1,3 @@
 ﻿  start_Game.cpp
+D:\visual studio项目\东方红魔乡\东方红魔乡\IMAGE.h(15,2): warning C4091: “extern ”: 没有声明变量时忽略“player”的左侧
   东方红魔乡.vcxproj -> D:\visual studio项目\东方红魔乡\x64\Debug\东方红魔乡.exe

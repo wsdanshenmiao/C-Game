@@ -1,12 +1,12 @@
 #include <graphics.h>
 #include <stdio.h>
 #include "start_Game.h"
+#include "IMAGE.h"
 
 #define WINWIDTH 1024
 #define WINHEIGHT 768
 
-IMAGE img_bk1;
-ExMessage msg = { 0 };//¶¨ÒåÏûÏ¢½á¹¹Ìå±äÁ¿
+ExMessage msg1 = { 0 };//¶¨ÒåÏûÏ¢½á¹¹Ìå±äÁ¿
 
 void create_Background()
 {
@@ -28,7 +28,7 @@ int botton(int x, int y, int width, int height, const char* text)//ÅĞ¶Ï°´Å¥ÊÇ·ñ°
 {
 	int wspace = (width - textwidth(text)) / 2;
 	int hspace = (height - textheight(text)) / 2;
-	if (within_Limits(msg.x, msg.y, x, y, width, height)) {
+	if (within_Limits(msg1.x, msg1.y, x, y, width, height)) {
 		setfillcolor(RGB(51, 51, 51));
 	}
 	else {
@@ -38,8 +38,8 @@ int botton(int x, int y, int width, int height, const char* text)//ÅĞ¶Ï°´Å¥ÊÇ·ñ°
 	solidrectangle(x, y, x + width, y + height);//»æÖÆ°´Å¥
 	settextstyle(80, 0, "»ªÎÄÁ¥Êé");
 	settextcolor(RGB(215, 88, 117));
-	outtextxy(x, y, "¿ªÊ¼ÓÎÏ·");//»æÖÆÎÄ×Ö
-	if (msg.message == WM_LBUTTONDOWN && within_Limits(msg.x, msg.y, x, y, width, height)) {
+	outtextxy(x, y, text);//»æÖÆÎÄ×Ö
+	if (msg1.message == WM_LBUTTONDOWN && within_Limits(msg1.x, msg1.y, x, y, width, height)) {
 		return 1;
 	}
 	else {
@@ -51,12 +51,13 @@ int main()
 {
 	initgraph(WINWIDTH, WINHEIGHT);//´´½¨´°¿Ú
 	cleardevice();
+	setbkcolor(RGB(38, 0, 0));
 	setbkmode(TRANSPARENT);
 
 	while (1) {
-		peekmessage(&msg, EX_MOUSE);//»ñÈ¡ÏûÏ¢
+		peekmessage(&msg1, EX_MOUSE);//»ñÈ¡ÏûÏ¢
 
-		int x = 512 - textwidth("¿ªÊ¼ÓÎÏ·") / 2;
+		int x = 256 - textwidth("¿ªÊ¼ÓÎÏ·") / 2;
 		int y = 500;
 		int width = textwidth("¿ªÊ¼ÓÎÏ·");
 		int height = textheight("¿ªÊ¼ÓÎÏ·");
@@ -66,14 +67,16 @@ int main()
 
 		create_Background();//´´½¨±³¾°
 		if (botton(x, y, width, height, "¿ªÊ¼ÓÎÏ·")) {//ÅĞ¶Ï°´Å¥ÊÇ·ñ°´ÏÂ
-			start_Game();
 			printf("start game\n");
+			start_Game();
 		}
-
+		if (botton(x + 512, y, width, height, "ÍË³öÓÎÏ·")) {
+			printf("end game\n");
+			break;
+		}
+		msg1.message = 0;//ÏûÏ¢ÇåÁã
 		EndBatchDraw();
 	}
-
-	getchar();
 
 	return 0;
 }

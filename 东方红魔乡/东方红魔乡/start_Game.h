@@ -3,6 +3,8 @@
 
 void start_Game();
 void change_Background();
+void load_Player();
+void key_Message();
 
 #endif
 
