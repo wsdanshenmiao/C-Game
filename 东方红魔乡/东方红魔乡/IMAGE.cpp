@@ -12,3 +12,4 @@ struct player//玩家结构体
 	int height;
 	int HP;
 };
+struct player player;

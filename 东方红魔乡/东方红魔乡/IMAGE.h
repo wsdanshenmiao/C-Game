@@ -13,5 +13,6 @@ extern struct player//玩家结构体
 	int height;
 	int HP;
 };
+extern struct player player;
 
 #endif 

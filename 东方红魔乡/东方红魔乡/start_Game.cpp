@@ -4,15 +4,17 @@
 #include "tools.hpp"
 #include "IMAGE.h"
 
+#define BKX 660
+#define BKY 700
+
 int img_bk2x = 40;
 int img_bk2y = 34;
-struct player player;
 ExMessage msg2 = { 0 };//定义消息结构体变量
 
 void game_Init()
 {
-	player.x = 512;
-	player.y = 512;
+	player.x = BKX / 2 + img_bk2x;
+	player.y = BKY * 3 / 4 + img_bk2y;
 	player.live = true;
 	player.width = 32;
 	player.height = 54;
@@ -53,15 +55,25 @@ int load_Player(int index_player)
 	return index_player;
 }
 
+int within_Bk(int px, int py, int w, int h)
+{
+	if (img_bk2x <= px && px <= img_bk2x + BKX - w && img_bk2y <= py && py <= img_bk2y + BKY - 2*h) {
+		return 1;
+	}
+	else {
+		return 0;
+	}
+}
+
 void key_Message(int* dx, int* dy, int ps)
 {
 	peekmessage(&msg2, EX_KEY);
 	if (msg2.message == WM_KEYDOWN) {
 		switch (msg2.vkcode) {
-		case 'W':*dy = -1; break;
-		case 'S':*dy = 1; break;
-		case 'A':*dx = -1; break;
-		case 'D':*dx = 1; break;
+		case 'W':*dy = -within_Bk(player.x, player.y, player.width, player.height); break;
+		case 'S':*dy = within_Bk(player.x, player.y, player.width, player.height); break;
+		case 'A':*dx = -within_Bk(player.x, player.y, player.width, player.height); break;
+		case 'D':*dx = within_Bk(player.x, player.y, player.width, player.height); break;
 		}
 	}
 	else if (msg2.message == WM_KEYUP) {
