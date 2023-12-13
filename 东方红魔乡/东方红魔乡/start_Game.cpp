@@ -15,10 +15,18 @@ void game_Init()
 {
 	player.x = BKX / 2 + img_bk2x;
 	player.y = BKY * 3 / 4 + img_bk2y;
-	player.live = true;
 	player.width = 32;
 	player.height = 54;
+	player.live = true;
 	player.HP = 12;
+}
+
+void bullet_Init()
+{
+	int x = 0, y = 0;
+	int width = 16;
+	int height = 16;
+	bool live = false;
 }
 
 void change_Background()
@@ -57,7 +65,7 @@ int load_Player(int index_player)
 
 int within_Bk(int px, int py, int w, int h)
 {
-	if (img_bk2x <= px && px <= img_bk2x + BKX - w && img_bk2y <= py && py <= img_bk2y + BKY - 2*h) {
+	if (img_bk2x <= px && px <= img_bk2x + BKX - w && img_bk2y <= py && py <= img_bk2y + BKY - h) {
 		return 1;
 	}
 	else {
@@ -68,20 +76,38 @@ int within_Bk(int px, int py, int w, int h)
 void key_Message(int* dx, int* dy, int ps)
 {
 	peekmessage(&msg2, EX_KEY);
-	if (msg2.message == WM_KEYDOWN) {
-		switch (msg2.vkcode) {
-		case 'W':*dy = -within_Bk(player.x, player.y, player.width, player.height); break;
-		case 'S':*dy = within_Bk(player.x, player.y, player.width, player.height); break;
-		case 'A':*dx = -within_Bk(player.x, player.y, player.width, player.height); break;
-		case 'D':*dx = within_Bk(player.x, player.y, player.width, player.height); break;
+	if (within_Bk(player.x, player.y, player.width, player.height)) {//判断是否在边界内
+		if (msg2.message == WM_KEYDOWN) {//判断方向
+			switch (msg2.vkcode) {
+			case 'W':*dy = -1; break;
+			case 'S':*dy = 1; break;
+			case 'A':*dx = -1; break;
+			case 'D':*dx = 1; break;
+			}
+		}
+		else if (msg2.message == WM_KEYUP) {
+			switch (msg2.vkcode) {
+			case 'W':*dy = 0; break;
+			case 'S':*dy = 0; break;
+			case 'A':*dx = 0; break;
+			case 'D':*dx = 0; break;
+			}
 		}
 	}
-	else if (msg2.message == WM_KEYUP) {
-		switch (msg2.vkcode) {
-		case 'W':*dy = 0; break;
-		case 'S':*dy = 0; break;
-		case 'A':*dx = 0; break;
-		case 'D':*dx = 0; break;
+	else {
+		*dy = 0;//角色停止
+		*dx = 0; 
+		if (player.x > img_bk2x + BKX - player.width) {
+			player.x--;
+		}		
+		if (player.x < img_bk2x) {
+			player.x++;
+		}
+		if (player.y > img_bk2y + BKY - player.height) {
+			player.y--;
+		}
+		if (player.y < img_bk2y) {
+			player.y++;
 		}
 	}
 }
@@ -89,6 +115,7 @@ void key_Message(int* dx, int* dy, int ps)
 void start_Game()
 {	
 	game_Init();//初始化游戏数值
+	bullet_Init();
 
 	int index_player = 0;
 	int player_speed = 2;//玩家速度

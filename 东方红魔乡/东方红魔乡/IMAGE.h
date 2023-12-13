@@ -5,6 +5,7 @@ extern IMAGE img_bk1;
 extern IMAGE img_bk2;
 extern IMAGE img_bk3[2];
 extern IMAGE img_player[2];
+extern IMAGE img_bullet[2];
 extern struct player//玩家结构体
 {
 	int x, y;
@@ -14,5 +15,13 @@ extern struct player//玩家结构体
 	int HP;
 };
 extern struct player player;
+extern struct bullet
+{
+	int x, y;
+	int width;
+	int height;
+	bool live;
+};
+extern struct bullet bullet;
 
 #endif 
