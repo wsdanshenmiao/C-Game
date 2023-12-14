@@ -18,15 +18,14 @@ void game_Init()
 	player.width = 32;
 	player.height = 54;
 	player.live = true;
-	player.HP = 12;
-}
-
-void bullet_Init()
-{
-	int x = 0, y = 0;
-	int width = 16;
-	int height = 16;
-	bool live = false;
+	player.HP = 12;	
+	for (int i = 0; i < BULLET_NUM; i++) {
+		bullet[i].x = 0;
+		bullet[i].y = 0;
+		bullet[i].width = 12;
+		bullet[i].height = 12;
+		bullet[i].live = false;
+	}
 }
 
 void change_Background()
@@ -58,9 +57,41 @@ int load_Player(int index_player)
 	//loadimage(img_player + 1, "assets\\player_a.png");
 	//putimage(512, 512, player.width, player.height, img_player + 1, player.width * index_player, 0, NOTSRCERASE);
 	//putimage(512, 512, player.width, player.height, img_player + 0, player.width * index_player, 0, SRCERASE);
+	//drawImg(bullet.x, bullet.y, bullet.width, bullet.height, img_bullet + 0, 128, 0);
 	drawImg(player.x, player.y, player.width, player.height, img_player + 0, player.width * index_player, 0);
 	index_player = (clock() / time_Intervalplayer) % frames_player;
 	return index_player;
+}
+
+void load_Bullet()
+{
+	loadimage(img_bullet + 0, "assets\\player.png");
+	loadimage(img_bullet + 1, "assets\\player_a.png");
+	for (int i = 0; i < BULLET_NUM; i++) {
+		if (bullet[i].live) {//创建子弹
+			putimage(bullet[i].x, bullet[i].y, bullet[i].width, bullet[i].height, img_bullet + 1, 130, 2);
+			putimage(bullet[i].x, bullet[i].y, bullet[i].width, bullet[i].height, img_bullet + 0, 130, 2);
+			putimage(bullet[i + 1].x, bullet[i + 1].y, bullet[i + 1].width, bullet[i + 1].height, img_bullet + 1, 130, 2);
+			putimage(bullet[i + 1].x, bullet[i + 1].y, bullet[i + 1].width, bullet[i + 1].height, img_bullet + 0, 130, 2);
+			break;
+		}
+	}
+
+}
+
+void bullet_Move()
+{
+	for (int i = 0; i < BULLET_NUM; i++) {
+		if (bullet[i].live) {
+			bullet[i].y -= 4;
+			bullet[i + 1].y -= 4;
+			if (bullet[i].y < img_bk2y) {
+				bullet[i].live = false;
+				bullet[i + 1].live = false;
+			}
+		}
+	}
+
 }
 
 int within_Bk(int px, int py, int w, int h)
@@ -70,6 +101,21 @@ int within_Bk(int px, int py, int w, int h)
 	}
 	else {
 		return 0;
+	}
+}
+
+void creat_Bullet()
+{
+	for (int i = 0; i < BULLET_NUM; i++) {
+		if (bullet[i].live == false) {//创建子弹
+			bullet[i].live = true;
+			bullet[i].x = player.x + player.width / 2;
+			bullet[i].y = player.y - player.height / 4;
+			bullet[i + 1].live = true;
+			bullet[i + 1].x = player.x;
+			bullet[i + 1].y = player.y - player.height / 4;
+			break;
+		}
 	}
 }
 
@@ -83,6 +129,9 @@ void key_Message(int* dx, int* dy, int ps)
 			case 'S':*dy = 1; break;
 			case 'A':*dx = -1; break;
 			case 'D':*dx = 1; break;
+			case 'J':
+				creat_Bullet();
+				break;
 			}
 		}
 		else if (msg2.message == WM_KEYUP) {
@@ -115,7 +164,6 @@ void key_Message(int* dx, int* dy, int ps)
 void start_Game()
 {	
 	game_Init();//初始化游戏数值
-	bullet_Init();
 
 	int index_player = 0;
 	int player_speed = 2;//玩家速度
@@ -128,6 +176,8 @@ void start_Game()
 		cleardevice();
 		change_Background();//改变背景
 		index_player = load_Player(index_player);
+		load_Bullet();
+		bullet_Move();
 		key_Message(&directionx, &directiony, player_speed);
 		player.x += directionx * player_speed;
 		player.y += directiony * player_speed;

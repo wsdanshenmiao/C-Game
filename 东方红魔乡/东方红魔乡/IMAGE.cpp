@@ -1,5 +1,7 @@
 #include <graphics.h>
 
+#define BULLET_NUM 100
+
 IMAGE img_bk1;
 IMAGE img_bk2;
 IMAGE img_bk3[2];
@@ -21,4 +23,4 @@ struct bullet
 	int height;
 	bool live;
 };
-struct bullet bullet;
+struct bullet bullet[BULLET_NUM];

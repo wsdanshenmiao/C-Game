@@ -1,6 +1,8 @@
 #ifndef __IMAGE_H_
 #define __IMAGE_H_
 
+#define BULLET_NUM 100
+
 extern IMAGE img_bk1;
 extern IMAGE img_bk2;
 extern IMAGE img_bk3[2];
@@ -22,6 +24,6 @@ extern struct bullet
 	int height;
 	bool live;
 };
-extern struct bullet bullet;
+extern struct bullet bullet[BULLET_NUM];
 
 #endif 
