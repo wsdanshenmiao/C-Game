@@ -71,8 +71,8 @@ void load_Bullet()
 		if (bullet[i].live) {//创建子弹
 			putimage(bullet[i].x, bullet[i].y, bullet[i].width, bullet[i].height, img_bullet + 1, 130, 2);
 			putimage(bullet[i].x, bullet[i].y, bullet[i].width, bullet[i].height, img_bullet + 0, 130, 2);
-			putimage(bullet[i + 1].x, bullet[i + 1].y, bullet[i + 1].width, bullet[i + 1].height, img_bullet + 1, 130, 2);
-			putimage(bullet[i + 1].x, bullet[i + 1].y, bullet[i + 1].width, bullet[i + 1].height, img_bullet + 0, 130, 2);
+			//putimage(bullet[i + 1].x, bullet[i + 1].y, bullet[i + 1].width, bullet[i + 1].height, img_bullet + 1, 130, 2);
+			//putimage(bullet[i + 1].x, bullet[i + 1].y, bullet[i + 1].width, bullet[i + 1].height, img_bullet + 0, 130, 2);
 			break;
 		}
 	}
@@ -84,10 +84,10 @@ void bullet_Move()
 	for (int i = 0; i < BULLET_NUM; i++) {
 		if (bullet[i].live) {
 			bullet[i].y -= 4;
-			bullet[i + 1].y -= 4;
+			//bullet[i + 1].y -= 4;
 			if (bullet[i].y < img_bk2y) {
 				bullet[i].live = false;
-				bullet[i + 1].live = false;
+				//bullet[i + 1].live = false;
 			}
 		}
 	}
@@ -107,13 +107,13 @@ int within_Bk(int px, int py, int w, int h)
 void creat_Bullet()
 {
 	for (int i = 0; i < BULLET_NUM; i++) {
-		if (bullet[i].live == false) {//创建子弹
+		if (!bullet[i].live) {//创建子弹
 			bullet[i].live = true;
 			bullet[i].x = player.x + player.width / 2;
 			bullet[i].y = player.y - player.height / 4;
-			bullet[i + 1].live = true;
-			bullet[i + 1].x = player.x;
-			bullet[i + 1].y = player.y - player.height / 4;
+			//bullet[i + 1].live = true;
+			//bullet[i + 1].x = player.x;
+			//bullet[i + 1].y = player.y - player.height / 4;
 			break;
 		}
 	}
@@ -121,6 +121,7 @@ void creat_Bullet()
 
 void key_Message(int* dx, int* dy, int ps)
 {
+	static DWORD time1, time2;
 	peekmessage(&msg2, EX_KEY);
 	if (within_Bk(player.x, player.y, player.width, player.height)) {//判断是否在边界内
 		if (msg2.message == WM_KEYDOWN) {//判断方向
@@ -130,7 +131,10 @@ void key_Message(int* dx, int* dy, int ps)
 			case 'A':*dx = -1; break;
 			case 'D':*dx = 1; break;
 			case 'J':
-				creat_Bullet();
+				if (time2 - time1 > 500) {
+					creat_Bullet();
+					time1 = time2;
+				}
 				break;
 			}
 		}
@@ -159,6 +163,7 @@ void key_Message(int* dx, int* dy, int ps)
 			player.y++;
 		}
 	}
+	time2 = GetTickCount();
 }
 
 void start_Game()
