@@ -1,0 +1,10 @@
+﻿  IMAGE.cpp
+  main.cpp
+D:\Git版本管理\C-Game\东方红魔乡\东方红魔乡\IMAGE.h(18,2): warning C4091: “extern ”: 没有声明变量时忽略“player”的左侧
+D:\Git版本管理\C-Game\东方红魔乡\东方红魔乡\IMAGE.h(26,2): warning C4091: “extern ”: 没有声明变量时忽略“bullet”的左侧
+  Player.cpp
+  start_Game.cpp
+D:\Git版本管理\C-Game\东方红魔乡\东方红魔乡\IMAGE.h(18,2): warning C4091: “extern ”: 没有声明变量时忽略“player”的左侧
+D:\Git版本管理\C-Game\东方红魔乡\东方红魔乡\IMAGE.h(26,2): warning C4091: “extern ”: 没有声明变量时忽略“bullet”的左侧
+  正在生成代码...
+  东方红魔乡.vcxproj -> D:\Git版本管理\C-Game\东方红魔乡\x64\Debug\东方红魔乡.exe
