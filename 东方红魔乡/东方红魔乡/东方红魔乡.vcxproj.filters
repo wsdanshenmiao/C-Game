@@ -18,27 +18,33 @@
     <ClCompile Include="main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="start_Game.cpp">
+    <ClCompile Include="Game.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="IMAGE.cpp">
+    <ClCompile Include="Image.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Variate.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="start_Game.h">
+    <ClInclude Include="Game.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="tools.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="IMAGE.h">
+    <ClInclude Include="Image.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Player.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Variate.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

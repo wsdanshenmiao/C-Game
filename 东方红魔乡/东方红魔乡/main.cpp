@@ -1,7 +1,7 @@
 #include <graphics.h>
 #include <stdio.h>
-#include "start_Game.h"
-#include "IMAGE.h"
+#include "Game.h"
+#include "Image.h"
 
 #define WINWIDTH 1024
 #define WINHEIGHT 768
@@ -68,7 +68,7 @@ int main()
 		create_Background();//创建背景
 		if (botton(x, y, width, height, "开始游戏")) {//判断按钮是否按下
 			printf("start game\n");
-			start_Game();
+			Game();
 		}
 		if (botton(x + 512, y, width, height, "退出游戏")) {
 			printf("end game\n");
