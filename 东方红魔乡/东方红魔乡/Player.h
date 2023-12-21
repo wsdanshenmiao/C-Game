@@ -3,8 +3,8 @@
 
 void Player();
 int load_Player(int index_player);
-void load_Bullet();
-void creat_Bullet();
+void load_Playerbullet();
+void creat_Playerbullet();
 void bullet_Move();
 
 #endif 

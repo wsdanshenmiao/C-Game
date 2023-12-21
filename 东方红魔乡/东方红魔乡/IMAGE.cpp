@@ -7,7 +7,8 @@ IMAGE img_bk1;
 IMAGE img_bk2;
 IMAGE img_bk3[2];
 IMAGE img_player[2];
-IMAGE img_bullet[2];
+IMAGE img_playerbullet1[2];
+IMAGE img_enemy1[2];
 
 void load_Image()
 {	
@@ -15,11 +16,13 @@ void load_Image()
 	loadimage(img_bk3 + 0, "assets\\bk3-1.jpg");
 	loadimage(img_bk3 + 1, "assets\\bk3-2.jpg");
 
-	loadimage(img_player + 0, "assets\\²©ÀöÁéÃÎ£¨ºìÄ§Ïç×Ô»úÏñËØ»æ£©.png");
 	//loadimage(img_player + 0, "assets\\player.jpg");
 	//loadimage(img_player + 1, "assets\\player_a.jpg");
-	loadimage(img_bullet + 0, "assets\\player.png");
-	loadimage(img_bullet + 1, "assets\\player_a.png");
+	loadimage(img_player + 0, "assets\\²©ÀöÁéÃÎ£¨ºìÄ§Ïç×Ô»úÏñËØ»æ£©.png");
+	loadimage(img_playerbullet1 + 0, "assets\\player.png");
+	loadimage(img_playerbullet1 + 1, "assets\\player_a.png");
+	loadimage(&img_enemy1[0], "assets\\enemy1-0.png");
+	loadimage(&img_enemy1[1], "assets\\enemy1-1.png");
 }
 void change_Background()
 {

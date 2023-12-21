@@ -4,11 +4,12 @@
 #include "Image.h"
 #include "Player.h"
 #include "Variate.h"
+#include "Enemy.h"
 
 #define BKX 660
 #define BKY 700
 
-ExMessage msg2 = { 0 };	//定义消息结构体变量
+ExMessage msg2 = { 0 };		//定义消息结构体变量
 
 void game_Init()
 {
@@ -19,11 +20,19 @@ void game_Init()
 	player.live = true;
 	player.HP = 12;	
 	for (int i = 0; i < BULLET_NUM; i++) {
-		bullet[i].x = 0;
-		bullet[i].y = 0;
-		bullet[i].width = 12;
-		bullet[i].height = 12;
-		bullet[i].live = false;
+		player_Bullet[i].x = 0;
+		player_Bullet[i].y = 0;
+		player_Bullet[i].width = 12;
+		player_Bullet[i].height = 12;
+		player_Bullet[i].live = false;
+	}
+	for (int i = 0; i < ENEMY1_NUM; i++) {
+		enemy1[i].x = 100;
+		enemy1[i].y = 100;
+		enemy1[i].width = 34;
+		enemy1[i].height = 34;
+		enemy1[i].live = true;
+		enemy1[i].HP = 20;
 	}
 }
 
@@ -80,7 +89,7 @@ void key_Message(int* dx, int* dy, int ps)
 		}
 		if (GetAsyncKeyState('Z')) {	//发射子弹
 			if (time2 - time1 > 100) {
-				creat_Bullet();
+				creat_Playerbullet();
 				time1 = time2;
 			}
 		}
@@ -126,6 +135,7 @@ void Game()
 		change_Background();	//改变背景
 
 		Player();
+		Enemy();
 
 		key_Message(&directionx, &directiony, player_speed);
 
