@@ -1,7 +1,5 @@
 #include <graphics.h>
-
-#define IMG_BK2X 40
-#define IMG_BK2Y 34
+#include "Variate.h"
 
 IMAGE img_bk1;
 IMAGE img_bk2;

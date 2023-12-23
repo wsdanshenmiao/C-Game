@@ -44,8 +44,8 @@ void bullet_Move()
 {
 	for (int i = 0; i < BULLET_NUM; i++) {
 		if (player_Bullet[i].live) {
-			player_Bullet[i].y -= 4;
-			//player_Bullet[i + 1].y -= 4;
+			player_Bullet[i].y -= BULLTESP;
+			//player_Bullet[i + 1].y -= BULLTESP;
 			if (player_Bullet[i].y < IMG_BK2Y) {
 				player_Bullet[i].live = false;
 				//player_Bullet[i + 1].live = false;

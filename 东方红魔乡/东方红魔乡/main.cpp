@@ -2,9 +2,7 @@
 #include <stdio.h>
 #include "Game.h"
 #include "Image.h"
-
-#define WINWIDTH 1024
-#define WINHEIGHT 768
+#include "Variate.h"
 
 ExMessage msg1 = { 0 };//定义消息结构体变量
 

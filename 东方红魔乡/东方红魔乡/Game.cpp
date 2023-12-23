@@ -6,9 +6,6 @@
 #include "Variate.h"
 #include "Enemy.h"
 
-#define BKX 660
-#define BKY 700
-
 ExMessage msg2 = { 0 };		//定义消息结构体变量
 
 void game_Init()
@@ -18,7 +15,7 @@ void game_Init()
 	player.width = 32;
 	player.height = 54;
 	player.live = true;
-	player.HP = 12;	
+	player.HP = 3;	
 	for (int i = 0; i < BULLET_NUM; i++) {
 		player_Bullet[i].x = 0;
 		player_Bullet[i].y = 0;
@@ -26,13 +23,15 @@ void game_Init()
 		player_Bullet[i].height = 12;
 		player_Bullet[i].live = false;
 	}
-	for (int i = 0; i < ENEMY1_NUM; i++) {
-		enemy1[i].x = 100;
-		enemy1[i].y = 100;
-		enemy1[i].width = 34;
-		enemy1[i].height = 34;
-		enemy1[i].live = true;
-		enemy1[i].HP = 20;
+	for (int j = 0; j < ENEMY1_NUM1; j++) {
+		for (int i = 0; i < ENEMY1_NUM2; i++) {
+			enemy1[j][i].x = 0;
+			enemy1[j][i].y = 0;
+			enemy1[j][i].width = 35;
+			enemy1[j][i].height = 35;
+			enemy1[j][i].live = false;
+			enemy1[j][i].HP = 1;
+		}
 	}
 }
 
