@@ -20,35 +20,51 @@ int load_Player(int index_player)
 
 void load_Playerbullet()
 {
-	for (int i = 0; i < BULLET_NUM; i++) {
-		if (player_Bullet[i].live) {//创建子弹
-			putimage(player_Bullet[i].x, player_Bullet[i].y, player_Bullet[i].width, player_Bullet[i].height, img_playerbullet1 + 1, 130, 2, NOTSRCERASE);
-			putimage(player_Bullet[i].x, player_Bullet[i].y, player_Bullet[i].width, player_Bullet[i].height, img_playerbullet1 + 0, 130, 2, SRCERASE);
+	for (int i = 0; i < BULLET_NUM1; i++) {
+		for (int j = 0; j < BULLET_NUM2; j++) {
+			if (player_Bullet[i][j].live) {//创建子弹
+				putimage(player_Bullet[i][j].x, player_Bullet[i][j].y, player_Bullet[i][j].width, player_Bullet[i][j].height, img_playerbullet1 + 1, 130, 2, NOTSRCERASE);
+				putimage(player_Bullet[i][j].x, player_Bullet[i][j].y, player_Bullet[i][j].width, player_Bullet[i][j].height, img_playerbullet1 + 0, 130, 2, SRCERASE);
+			}
 		}
 	}
 }
 
 void creat_Playerbullet()
 {
-	for (int i = 0; i < BULLET_NUM; i++) {
-		if (!player_Bullet[i].live) {//创建子弹
-			player_Bullet[i].live = true;
-			player_Bullet[i].x = player.x + player.width / 2;
-			player_Bullet[i].y = player.y - player.height / 4;
-			break;
+	for (int i = 0; i < BULLET_NUM1; i++) {
+		for (int j = 0; j < BULLET_NUM2; j++) {
+			if (!player_Bullet[i][j].live) {//创建子弹
+				player_Bullet[i][j].live = true;
+				player_Bullet[i][j].y = player.y - player.height / 4;
+				if (i == 0) {
+					player_Bullet[i][j].x = player.x;
+				}
+				else {
+					player_Bullet[i][j].x = player.x + player.width - player_Bullet[i][j].width;
+				}
+				break;
+			}
+
 		}
 	}
 }
 
 void bullet_Move()
 {
-	for (int i = 0; i < BULLET_NUM; i++) {
-		if (player_Bullet[i].live) {
-			player_Bullet[i].y -= BULLTESP;
-			//player_Bullet[i + 1].y -= BULLTESP;
-			if (player_Bullet[i].y < IMG_BK2Y) {
-				player_Bullet[i].live = false;
-				//player_Bullet[i + 1].live = false;
+	for (int i = 0; i < BULLET_NUM1; i++) {
+		for (int j = 0; j < BULLET_NUM2; j++) {
+			if (player_Bullet[i][j].live) {
+				player_Bullet[i][j].y -= BULLETSPY;
+				//if (i == 0) {
+				//	player_Bullet[i][j].x -= BULLETSPX;
+				//}
+				//else {
+				//	player_Bullet[i][j].x += BULLETSPX;
+				//}
+				if (player_Bullet[i][j].y < IMG_BK2Y) {
+					player_Bullet[i][j].live = false;
+				}
 			}
 		}
 	}

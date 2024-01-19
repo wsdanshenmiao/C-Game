@@ -1,14 +1,16 @@
 #ifndef __VARIATE_H_
 #define __VARIATE_H_
 
-#define BULLET_NUM 100
+#define BULLET_NUM1 2
+#define BULLET_NUM2 100
 #define ENEMY1_NUM1 2
 #define ENEMY1_NUM2 10
 #define IMG_BK2X 40
 #define IMG_BK2Y 34
 #define WINWIDTH 1024
 #define WINHEIGHT 768
-#define BULLTESP 4
+#define BULLETSPX 1
+#define BULLETSPY 4
 #define BKX 660
 #define BKY 700
 
@@ -18,8 +20,8 @@ extern int player_speed;//玩家速度
 extern int directionx;//x轴方向
 extern int directiony;//y轴方向
 extern int index_enemy1;	
-extern int enemy1_SpeedX;
-extern int enemy1_SpeedY;
+extern double enemy1_SpeedX;
+extern double enemy1_SpeedY;
 
 extern struct player//玩家结构体
 {
@@ -37,7 +39,7 @@ extern struct bullet
 	int height;
 	bool live;
 };
-extern struct bullet player_Bullet[BULLET_NUM];
+extern struct bullet player_Bullet[BULLET_NUM1][BULLET_NUM2];
 extern struct enemy
 {
 	int x, y;

@@ -1,1 +1,5 @@
-﻿  东方红魔乡.vcxproj -> D:\Git版本管理\C-Game\东方红魔乡\x64\Debug\东方红魔乡.exe
+﻿  Player.cpp
+D:\Git版本管理\C-Game\东方红魔乡\东方红魔乡\Variate.h(33,2): warning C4091: “extern ”: 没有声明变量时忽略“player”的左侧
+D:\Git版本管理\C-Game\东方红魔乡\东方红魔乡\Variate.h(41,2): warning C4091: “extern ”: 没有声明变量时忽略“bullet”的左侧
+D:\Git版本管理\C-Game\东方红魔乡\东方红魔乡\Variate.h(50,2): warning C4091: “extern ”: 没有声明变量时忽略“enemy”的左侧
+  东方红魔乡.vcxproj -> D:\Git版本管理\C-Game\东方红魔乡\x64\Debug\东方红魔乡.exe

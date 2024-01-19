@@ -16,12 +16,14 @@ void game_Init()
 	player.height = 54;
 	player.live = true;
 	player.HP = 3;	
-	for (int i = 0; i < BULLET_NUM; i++) {
-		player_Bullet[i].x = 0;
-		player_Bullet[i].y = 0;
-		player_Bullet[i].width = 12;
-		player_Bullet[i].height = 12;
-		player_Bullet[i].live = false;
+	for (int i = 0; i < BULLET_NUM1; i++) {
+		for (int j = 0; j < BULLET_NUM2; j++) {
+			player_Bullet[i][j].x = 0;
+			player_Bullet[i][j].y = 0;
+			player_Bullet[i][j].width = 12;
+			player_Bullet[i][j].height = 12;
+			player_Bullet[i][j].live = false;
+		}
 	}
 	for (int j = 0; j < ENEMY1_NUM1; j++) {
 		for (int i = 0; i < ENEMY1_NUM2; i++) {
@@ -30,7 +32,7 @@ void game_Init()
 			enemy1[j][i].width = 35;
 			enemy1[j][i].height = 35;
 			enemy1[j][i].live = false;
-			enemy1[j][i].HP = 1;
+			enemy1[j][i].HP = 2;
 		}
 	}
 }
@@ -133,8 +135,8 @@ void Game()
 		load_Image();
 		change_Background();	//改变背景
 
-		Player();
-		Enemy();
+		Player();	//加载玩家和玩家子弹
+		Enemy();	//加载敌人和敌人子弹
 
 		key_Message(&directionx, &directiony, player_speed);
 
